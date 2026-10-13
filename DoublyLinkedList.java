@@ -148,7 +148,7 @@ public class DoublyLinkedList implements LinkedList{
             System.out.println("no data");
         }
         else{
-            Node temp = tail;
+            Node2P temp = tail;
             while(temp != null){ //melakukan print tiap pengulangan
                 System.out.println(temp.data);
                 if(temp == head){ //berhenti bila telah mencapai head
@@ -165,7 +165,7 @@ public class DoublyLinkedList implements LinkedList{
             return false;
         }
         else{
-            Node temp = head;
+            Node2P temp = head;
             while(temp != null){ //mencari node berdasarkan data
                 if(temp.data.equals(targetData)){ //berhenti jika data sama
                     break;
@@ -192,7 +192,7 @@ public class DoublyLinkedList implements LinkedList{
     public Object[] toArray() {
         // TODO digunakan untuk mendapatkan keseluruhan data pada node-node di linked list dalam bentuk array. Data-data pada array disusun secara urut mulai dari head sampai dengan tail.
         Object [] data = new Object [size]; //buat array
-        Node temp = head;
+        Node2P temp = head;
         for(int i = 1; i <= size; i++){ //memasukkan data pada array
             data [i] = temp.data;
             temp = temp.next;
