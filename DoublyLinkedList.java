@@ -28,6 +28,7 @@ public class DoublyLinkedList implements LinkedList{
             size++;
         }
     }
+    
     public void addLast(Object inputData){
         Node2P baru = new Node2P(inputData);
         if (isEmpty()){
@@ -123,12 +124,16 @@ public class DoublyLinkedList implements LinkedList{
     @Override
     public Object get(int index) {
         // TODO digunakan untuk mengembalikan data pada index ke-i dimulai dari head. Head memiliki index 0
+        if (index < 0 || index >= size) {
+            return null; // Mencegah error jika index di luar batas
+        }
         Node2P current = head;
         for (int i = 0; i < index;i++) {
             current = current.next;
         }
         return current.data;
     }
+    
     @Override
     public int indexOf(Object targetData) {
         // TODO digunakan mencari kemunculan pertama targetData pada linked list dan mengembalikan indeksnya. Indeks dari head adalah 0. Jika tidak ada targetData pada linked list, kembalikan nilai -1
@@ -141,6 +146,7 @@ public class DoublyLinkedList implements LinkedList{
         }
         return -1;
     }
+    
     @Override
     public void printReverse() {
         // TODO digunakan untuk mencetak data pada linked list dengan urutan terbalik, dari tail ke head.
@@ -148,7 +154,7 @@ public class DoublyLinkedList implements LinkedList{
             System.out.println("no data");
         }
         else{
-            Node2P temp = tail;
+            Node2P temp = tail; // DIUBAH: Node menjadi Node2P
             while(temp != null){ //melakukan print tiap pengulangan
                 System.out.println(temp.data);
                 if(temp == head){ //berhenti bila telah mencapai head
@@ -158,45 +164,43 @@ public class DoublyLinkedList implements LinkedList{
             }
         }
     }
+    
     @Override
     public boolean remove(Object targetData) {
         // TODO digunakan untuk mencari dan menghapus node dengan data=targetData pada linked list serta mengembalikan nilai True jika berhasil, dan False jika targetData tidak ada di linkedList
         if(isEmpty()){ //cek jika kosong
             return false;
         }
-        else{
-            Node2P temp = head;
-            while(temp != null){ //mencari node berdasarkan data
-                if(temp.data.equals(targetData)){ //berhenti jika data sama
-                    break;
-                }
-                temp = temp.next;
+        
+        Node2P temp = head; // DIUBAH: Node menjadi Node2P
+        while(temp != null){ //mencari node berdasarkan data
+            if(temp.data.equals(targetData)){ //berhenti jika data sama
+                break;
             }
-            if(temp == null){ //cek hasil pengerjaan
-                return false;
-            }
-            if(size == 1){ //cek jika size hanya 1
-                head = null;
-                tail = null;
-                size--;
-                return true;
-            }
-            else{
-                temp.prev.next = temp.next;
-                temp.next.prev = temp.prev;
-                temp = null;
-                size--;
-                return true;
-            }
+            temp = temp.next;
         }
+        
+        if (temp == null) return false;
+        
+        if (temp == head) {
+            deleteFirst();
+        } else if (temp == tail) {
+            deleteLast();
+        } else {
+            temp.prev.next = temp.next;
+            temp.next.prev = temp.prev;
+            size--;
+        }
+        return true;
     }
+    
     @Override
     public Object[] toArray() {
         // TODO digunakan untuk mendapatkan keseluruhan data pada node-node di linked list dalam bentuk array. Data-data pada array disusun secara urut mulai dari head sampai dengan tail.
         Object [] data = new Object [size]; //buat array
-        Node2P temp = head;
-        for(int i = 0; i < size; i++){ //memasukkan data pada array
-            data [i] = temp.data;
+        Node2P temp = head; // DIUBAH: Node menjadi Node2P
+        for(int i = 0; i < size; i++){ // DIUBAH: Array index mulai dari 0 sampai < size
+            data[i] = temp.data;
             temp = temp.next;
         }
         return data;
