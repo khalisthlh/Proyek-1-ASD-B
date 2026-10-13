@@ -137,16 +137,59 @@ public class DoublyLinkedList implements LinkedList{
     @Override
     public void printReverse() {
         // TODO digunakan untuk mencetak data pada linked list dengan urutan terbalik, dari tail ke head.
-        
+        if(isEmpty()){ //cek jika kosong
+            System.out.println("no data");
+        }
+        else{
+            Node temp = tail;
+            while(temp != null){ //melakukan print tiap pengulangan
+                System.out.println(temp.data);
+                if(temp == head){ //berhenti bila telah mencapai head
+                    break;
+               }
+               temp = temp.prev;
+            }
+        }
     }
     @Override
     public boolean remove(Object targetData) {
         // TODO digunakan untuk mencari dan menghapus node dengan data=targetData pada linked list serta mengembalikan nilai True jika berhasil, dan False jika targetData tidak ada di linkedList
+        if(isEmpty()){ //cek jika kosong
+            return false;
+        }
+        else{
+            Node temp = head;
+            while(temp != null){ //mencari node berdasarkan data
+                if(temp.data.equals(targetData)){ //berhenti jika data sama
+                    break;
+                }
+                temp = temp.next;
+            }
+            if(size == 1){ //cek jika size hanya 1
+                head = null;
+                tail = null;
+                size--;
+                return true;
+            }
+            else{
+                temp.prev.next = temp.next;
+                temp.next.prev = temp.prev;
+                temp = null;
+                size--;
+                return true;
+            }
+        }
         return false;
     }
     @Override
     public Object[] toArray() {
         // TODO digunakan untuk mendapatkan keseluruhan data pada node-node di linked list dalam bentuk array. Data-data pada array disusun secara urut mulai dari head sampai dengan tail.
-        return null;
+        Object [] data = new Object [size]; //buat array
+        Node temp = head;
+        for(int i = 1; i <= size; i++){ //memasukkan data pada array
+            data [i] = temp.data;
+            temp = temp.next;
+        }
+        return data;
     }
 }
