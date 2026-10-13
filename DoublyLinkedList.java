@@ -103,7 +103,7 @@ public class DoublyLinkedList implements LinkedList{
             temp.next = temp.next.next;
             size--;
         }
-        else if(index==size-2){//menghapus tail
+        else if(index==size-2){
             this.deleteLast();
         }
         else{
@@ -125,7 +125,7 @@ public class DoublyLinkedList implements LinkedList{
     public Object get(int index) {
         // TODO digunakan untuk mengembalikan data pada index ke-i dimulai dari head. Head memiliki index 0
         if (index < 0 || index >= size) {
-            return null; // Mencegah error jika index di luar batas
+            return null; 
         }
         Node2P current = head;
         for (int i = 0; i < index;i++) {
@@ -150,14 +150,14 @@ public class DoublyLinkedList implements LinkedList{
     @Override
     public void printReverse() {
         // TODO digunakan untuk mencetak data pada linked list dengan urutan terbalik, dari tail ke head.
-        if(isEmpty()){ //cek jika kosong
+        if(isEmpty()){ 
             System.out.println("no data");
         }
         else{
-            Node2P temp = tail; // DIUBAH: Node menjadi Node2P
-            while(temp != null){ //melakukan print tiap pengulangan
+            Node2P temp = tail; 
+            while(temp != null){ 
                 System.out.println(temp.data);
-                if(temp == head){ //berhenti bila telah mencapai head
+                if(temp == head){ 
                     break;
                }
                temp = temp.prev;
@@ -168,13 +168,13 @@ public class DoublyLinkedList implements LinkedList{
     @Override
     public boolean remove(Object targetData) {
         // TODO digunakan untuk mencari dan menghapus node dengan data=targetData pada linked list serta mengembalikan nilai True jika berhasil, dan False jika targetData tidak ada di linkedList
-        if(isEmpty()){ //cek jika kosong
+        if(isEmpty()){ 
             return false;
         }
         
-        Node2P temp = head; // DIUBAH: Node menjadi Node2P
-        while(temp != null){ //mencari node berdasarkan data
-            if(temp.data.equals(targetData)){ //berhenti jika data sama
+        Node2P temp = head; 
+        while(temp != null){ 
+            if(temp.data.equals(targetData)){ 
                 break;
             }
             temp = temp.next;
@@ -197,9 +197,9 @@ public class DoublyLinkedList implements LinkedList{
     @Override
     public Object[] toArray() {
         // TODO digunakan untuk mendapatkan keseluruhan data pada node-node di linked list dalam bentuk array. Data-data pada array disusun secara urut mulai dari head sampai dengan tail.
-        Object [] data = new Object [size]; //buat array
-        Node2P temp = head; // DIUBAH: Node menjadi Node2P
-        for(int i = 0; i < size; i++){ // DIUBAH: Array index mulai dari 0 sampai < size
+        Object [] data = new Object [size]; 
+        Node2P temp = head; 
+        for(int i = 0; i < size; i++){ 
             data[i] = temp.data;
             temp = temp.next;
         }
