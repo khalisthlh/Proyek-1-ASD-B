@@ -172,6 +172,9 @@ public class DoublyLinkedList implements LinkedList{
                 }
                 temp = temp.next;
             }
+            if(temp == null){ //cek hasil pengerjaan
+                return false;
+            }
             if(size == 1){ //cek jika size hanya 1
                 head = null;
                 tail = null;
@@ -186,7 +189,6 @@ public class DoublyLinkedList implements LinkedList{
                 return true;
             }
         }
-        return false;
     }
     @Override
     public Object[] toArray() {
